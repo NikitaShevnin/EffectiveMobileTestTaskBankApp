@@ -1,1 +1,195 @@
-# Здесь будет OpenAPI описание всех доступных эндпоинтов и моделей данных.
+openapi: 3.0.1
+info:
+  title: Bank Cards API
+  version: "1.0.0"
+  description: API для управления банковскими картами
+paths:
+  /api/auth/login:
+    post:
+      summary: Вход пользователя
+      parameters:
+        - in: query
+          name: username
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: password
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: JWT токен
+  /api/auth/register:
+    post:
+      summary: Регистрация пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Пользователь зарегистрирован
+  /api/cards:
+    get:
+      summary: Получить все карты
+      description: Доступно только администраторам
+      responses:
+        "200":
+          description: Список карт
+    post:
+      summary: Создать карту
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ownerId:
+                  type: integer
+                  description: ID пользователя
+      responses:
+        "200":
+          description: Карта создана
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  number:
+                    type: string
+                  owner:
+                    type: string
+                  expiry:
+                    type: string
+                  status:
+                    type: string
+                  balance:
+                    type: number
+                    format: double
+  /api/cards/my:
+    get:
+      summary: Список карт пользователя
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: size
+          schema:
+            type: integer
+        - in: query
+          name: search
+          schema:
+            type: string
+          description: Поиск по номеру карты
+      responses:
+        "200":
+          description: Список карт пользователя
+  /api/cards/{id}/balance:
+    get:
+      summary: Баланс карты
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Баланс
+  /api/cards/{id}/deposit:
+    post:
+      summary: Пополнение карты
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Баланс обновлен
+  /api/cards/{id}/withdraw:
+    post:
+      summary: Снятие с карты
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Баланс обновлен
+  /api/cards/{id}/block:
+    post:
+      summary: Блокировка карты
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Карта заблокирована
+  /api/cards/{id}/activate:
+    post:
+      summary: Активация карты
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Карта активирована
+  /api/cards/transfer:
+    post:
+      summary: Перевод между картами пользователя
+      responses:
+        "200":
+          description: Перевод выполнен
+  /api/users:
+    post:
+      summary: Создать пользователя
+      responses:
+        "200":
+          description: Пользователь создан
+  /api/users/{id}:
+    put:
+      summary: Обновить пользователя
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Пользователь обновлен
+    delete:
+      summary: Удалить пользователя
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Пользователь удален

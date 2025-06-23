@@ -1,0 +1,26 @@
+# Файлы IntelliJ IDEA
+.idea/
+*.iml
+
+# Файлы Eclipse
+.classpath
+.project
+.settings/
+
+# Каталоги сборки Maven
+/target/
+
+# Результаты сборки
+out/
+
+# Логи
+*.log
+
+# Секреты для docker-compose
+secrets/
+
+# Файлы MacOS
+.DS_Store
+
+/secrets/*
+!/.gitignore

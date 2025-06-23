@@ -1,0 +1,173 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: seed
+      context: data
+      changes:
+        # --- users ---
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: id, valueNumeric: 1}
+              - column: {name: username, value: user1}
+              - column: {name: password, value: "$2b$12$sfzJd3sS5g/eSwwuSVPY1.dFo3O1fy8Q9hDgU1//WxgaBvNjNr6xi"}
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: {name: user_id, valueNumeric: 1}
+              - column: {name: roles, value: ROLE_USER}
+
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: id, valueNumeric: 2}
+              - column: {name: username, value: user2}
+              - column: {name: password, value: "$2b$12$HBSfJLhtdufrJAGDKDVKYehyqHJewHMYaXPVjcnrSHlwtPASkyaea"}
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: {name: user_id, valueNumeric: 2}
+              - column: {name: roles, value: ROLE_USER}
+
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: id, valueNumeric: 3}
+              - column: {name: username, value: user3}
+              - column: {name: password, value: "$2b$12$Pp1CsL9FcF66js8vV8FSWuR5voJ/hWHE.xrsc/f3E5/DtXn87YYLS"}
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: {name: user_id, valueNumeric: 3}
+              - column: {name: roles, value: ROLE_USER}
+
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: id, valueNumeric: 4}
+              - column: {name: username, value: user4}
+              - column: {name: password, value: "$2b$12$c5Zmti7baBZrCj1kRWiiReARleycK796kzAYK3yya/CzGHmbaVm8a"}
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: {name: user_id, valueNumeric: 4}
+              - column: {name: roles, value: ROLE_USER}
+
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: id, valueNumeric: 5}
+              - column: {name: username, value: user5}
+              - column: {name: password, value: "$2b$12$RNMJYkqkba3HtpK2qGkRxutYoxEUsiQbguALRfQULOg8IIU7kcyfe"}
+        - insert:
+            tableName: user_roles
+            columns:
+              - column: {name: user_id, valueNumeric: 5}
+              - column: {name: roles, value: ROLE_USER}
+
+        # adjust user sequence
+        - sql: SELECT setval(pg_get_serial_sequence('users','id'), (SELECT MAX(id) FROM users));
+
+        # --- cards ---
+        - insert:
+            tableName: cards
+            columns:
+              - column: {name: id, valueNumeric: 1}
+              - column: {name: number, value: "7bK/2TnT/t14EvJ54wuadgbb0lJO2pSgRxctIDarhYM="}
+              - column: {name: owner_id, valueNumeric: 1}
+              - column: {name: expiry, value: "12/26"}
+              - column: {name: status, value: ACTIVE}
+              - column: {name: balance, valueNumeric: 1000}
+
+        - insert:
+            tableName: cards
+            columns:
+              - column: {name: id, valueNumeric: 2}
+              - column: {name: number, value: "vxnTiXNqfR09BhSFvnq0Rgbb0lJO2pSgRxctIDarhYM="}
+              - column: {name: owner_id, valueNumeric: 1}
+              - column: {name: expiry, value: "01/27"}
+              - column: {name: status, value: ACTIVE}
+              - column: {name: balance, valueNumeric: 500}
+
+        - insert:
+            tableName: cards
+            columns:
+              - column: {name: id, valueNumeric: 3}
+              - column: {name: number, value: "fFnPKHWBvi/PCulZUmzHKAbb0lJO2pSgRxctIDarhYM="}
+              - column: {name: owner_id, valueNumeric: 2}
+              - column: {name: expiry, value: "03/27"}
+              - column: {name: status, value: ACTIVE}
+              - column: {name: balance, valueNumeric: 250}
+
+        - insert:
+            tableName: cards
+            columns:
+              - column: {name: id, valueNumeric: 4}
+              - column: {name: number, value: "nyNNw+TGcRw9S/4KoxuqJQbb0lJO2pSgRxctIDarhYM="}
+              - column: {name: owner_id, valueNumeric: 2}
+              - column: {name: expiry, value: "05/26"}
+              - column: {name: status, value: ACTIVE}
+              - column: {name: balance, valueNumeric: 750}
+
+        - insert:
+            tableName: cards
+            columns:
+              - column: {name: id, valueNumeric: 5}
+              - column: {name: number, value: "UjGknunUlEzROGq6SvkN6Abb0lJO2pSgRxctIDarhYM="}
+              - column: {name: owner_id, valueNumeric: 3}
+              - column: {name: expiry, value: "10/26"}
+              - column: {name: status, value: ACTIVE}
+              - column: {name: balance, valueNumeric: 300}
+
+        - insert:
+            tableName: cards
+            columns:
+              - column: {name: id, valueNumeric: 6}
+              - column: {name: number, value: "8rAYpXQdG8j3AGcp+liyRwbb0lJO2pSgRxctIDarhYM="}
+              - column: {name: owner_id, valueNumeric: 3}
+              - column: {name: expiry, value: "02/27"}
+              - column: {name: status, value: ACTIVE}
+              - column: {name: balance, valueNumeric: 400}
+
+        - insert:
+            tableName: cards
+            columns:
+              - column: {name: id, valueNumeric: 7}
+              - column: {name: number, value: "qKG5NOAvsIujMUWHhm7YPAbb0lJO2pSgRxctIDarhYM="}
+              - column: {name: owner_id, valueNumeric: 4}
+              - column: {name: expiry, value: "08/27"}
+              - column: {name: status, value: ACTIVE}
+              - column: {name: balance, valueNumeric: 150}
+
+        - insert:
+            tableName: cards
+            columns:
+              - column: {name: id, valueNumeric: 8}
+              - column: {name: number, value: "JHQ8wwpfVTJzTnsVKJN2GAbb0lJO2pSgRxctIDarhYM="}
+              - column: {name: owner_id, valueNumeric: 4}
+              - column: {name: expiry, value: "11/26"}
+              - column: {name: status, value: ACTIVE}
+              - column: {name: balance, valueNumeric: 950}
+
+        - insert:
+            tableName: cards
+            columns:
+              - column: {name: id, valueNumeric: 9}
+              - column: {name: number, value: "CybuXLixTefUsTXTIqA6lwbb0lJO2pSgRxctIDarhYM="}
+              - column: {name: owner_id, valueNumeric: 5}
+              - column: {name: expiry, value: "04/26"}
+              - column: {name: status, value: ACTIVE}
+              - column: {name: balance, valueNumeric: 620}
+
+        - insert:
+            tableName: cards
+            columns:
+              - column: {name: id, valueNumeric: 10}
+              - column: {name: number, value: "vDwuKndrwREfEvGUN0r+jQbb0lJO2pSgRxctIDarhYM="}
+              - column: {name: owner_id, valueNumeric: 5}
+              - column: {name: expiry, value: "06/27"}
+              - column: {name: status, value: ACTIVE}
+              - column: {name: balance, valueNumeric: 700}
+
+        # adjust card sequence
+        - sql: SELECT setval(pg_get_serial_sequence('cards','id'), (SELECT MAX(id) FROM cards));

@@ -1,4 +1,9 @@
 package com.example.bankcards.entity;
 
-public class Role {
+/**
+ * Роли, которые могут быть назначены пользователю.
+ */
+public enum Role {
+    ROLE_USER,
+    ROLE_ADMIN
 }

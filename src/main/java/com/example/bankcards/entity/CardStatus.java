@@ -1,4 +1,10 @@
 package com.example.bankcards.entity;
 
-public class CardStatus {
+/**
+ * Возможные статусы банковской карты.
+ */
+public enum CardStatus {
+    ACTIVE,
+    BLOCKED,
+    EXPIRED
 }
