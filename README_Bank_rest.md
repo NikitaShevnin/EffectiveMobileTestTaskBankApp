@@ -41,3 +41,38 @@ secrets/
 ```bash
 docker-compose up -d --build
 ```
+
+## Структура проекта
+
+Код приложения находится в каталоге `src/main/java/com/example/bankcards` и разделён на пакеты по зонам ответственности:
+
+- `BankcardsApplication` – точка входа в Spring Boot приложение.
+- `controller` – REST-контроллеры.
+    - `AuthController` выдаёт JWT токены и регистрирует пользователей.
+    - `CardController` содержит операции над картами.
+    - `UserController` управляет пользователями.
+- `service` – бизнес-слой.
+    - `UserService` сохраняет и ищет пользователей.
+    - `CardService` управляет картами и балансом.
+    - `CardExpiryService` помечает просроченные карты.
+- `repository` – интерфейсы JPA.
+    - `UserRepository` и `CardRepository` обращаются к БД.
+- `entity` – JPA-сущности (`User`, `Card`, `Role`, `CardStatus`).
+- `dto` – объекты передачи данных для API.
+- `security` – конфигурация безопасности.
+    - `SecurityConfig` настраивает фильтры и CORS.
+    - `JwtAuthenticationFilter` извлекает пользователя из токена.
+    - `JwtTokenProvider` создаёт и разбирает JWT.
+    - `AppUserDetailsService` адаптирует `UserService` для Spring Security.
+- `converter` – вспомогательные конвертеры JPA (`CardNumberEncryptConverter` шифрует номера карт).
+- `config` – прочие конфигурации (`CorsConfig`, `AdminInitializer`, `OpenApiConfig`).
+- `aspect` – аспект логирования (`LoggingAspect`).
+- `exception` – пользовательские исключения и `GlobalExceptionHandler`.
+- `util` – утилитарные классы (`CardNumberGenerator`, `CardMaskUtil`).
+
+Дополнительные каталоги проекта:
+
+- `src/main/resources` – конфигурационные файлы приложения и миграции Liquibase.
+- `scripts` – утилиты для подготовки окружения и запуска контейнеров.
+- `docs` – описание API в формате OpenAPI.
+- `src/test` – модульные тесты.
