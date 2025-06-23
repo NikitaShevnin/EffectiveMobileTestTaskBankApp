@@ -17,10 +17,8 @@ out/
 *.log
 
 # Секреты для docker-compose
-secrets/
+/secrets/*
+!/.gitignore
 
 # Файлы MacOS
 .DS_Store
-
-/secrets/*
-!/.gitignore
