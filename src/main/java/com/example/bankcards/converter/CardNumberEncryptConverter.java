@@ -15,7 +15,7 @@ import java.util.Base64;
 public class CardNumberEncryptConverter implements AttributeConverter<String, String> {
 
     private static final String ALGO = "AES";
-    private static final byte[] KEY = "MySecretKey12345".getBytes(StandardCharsets.UTF_8);
+    private static final byte[] KEY = "MySecretKey123456".getBytes(StandardCharsets.UTF_8);
 
     @Override
     public String convertToDatabaseColumn(String attribute) {
