@@ -98,6 +98,29 @@ paths:
       responses:
         "200":
           description: Список карт пользователя
+    post:
+      summary: Создать карту пользователя
+      responses:
+        "200":
+          description: Карта создана
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  number:
+                    type: string
+                  owner:
+                    type: string
+                  expiry:
+                    type: string
+                  status:
+                    type: string
+                  balance:
+                    type: number
+                    format: double
   /api/cards/{id}/balance:
     get:
       summary: Баланс карты

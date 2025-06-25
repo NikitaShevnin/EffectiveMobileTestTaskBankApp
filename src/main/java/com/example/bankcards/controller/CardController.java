@@ -63,6 +63,16 @@ public class CardController {
         return result;
     }
 
+    @PostMapping("/my")
+    public CardFullDto createMyCard() {
+        User owner = userService.getCurrentUser()
+                .orElseThrow(() -> new ResourceNotFoundException("Пользователь не найден"));
+        Card card = new Card();
+        card.setOwner(owner);
+        Card saved = cardService.save(card);
+        return CardFullDto.fromEntity(saved);
+    }
+
     @GetMapping("/{id}")
     public CardDto get(@PathVariable Long id) {
         User current = userService.getCurrentUser()
