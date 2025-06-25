@@ -78,7 +78,7 @@ paths:
                   balance:
                     type: number
                     format: double
-  /api/cards/my:
+  /api/cards/createCard:
     get:
       summary: Список карт пользователя
       parameters:

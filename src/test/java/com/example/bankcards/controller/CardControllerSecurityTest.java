@@ -53,7 +53,7 @@ class CardControllerSecurityTest {
         when(userService.getCurrentUser()).thenReturn(java.util.Optional.of(new User()));
         when(cardService.save(any(Card.class))).thenReturn(new Card());
 
-        mockMvc.perform(post("/api/cards/my"))
+        mockMvc.perform(post("/api/cards/createCard"))
                 .andExpect(status().isOk());
     }
 }
