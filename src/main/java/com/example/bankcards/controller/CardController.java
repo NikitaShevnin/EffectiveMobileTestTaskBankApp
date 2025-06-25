@@ -63,7 +63,7 @@ public class CardController {
         return result;
     }
 
-    @PostMapping("/my")
+    @PostMapping("/createCard")
     public CardFullDto createMyCard() {
         User owner = userService.getCurrentUser()
                 .orElseThrow(() -> new ResourceNotFoundException("Пользователь не найден"));
